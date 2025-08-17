@@ -5,9 +5,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Grafo grafo = new Grafo("grafo.txt");
 
-        System.out.print("Digite o número de itercoes para gerar o grafo: ");
-        int k = scanner.nextInt();
-        createGrafo(k);
+        grafoGenerator g = grafoGenerator.geraInstancia(
+                100000, 7000, 1, 4000);
+        g.salvaEmArquivo("grafo.txt");
 
         System.out.print("Arquivo criado como 'grafo.txt', deseja carregar o grafo na memória?(sim: 1, nao: 2) ");
         int loadGrafo = scanner.nextInt();
@@ -24,30 +24,30 @@ public class Main {
         }
     }
 
-    public static void createGrafo(int k) {
-        Runtime runtime = Runtime.getRuntime();
-
-        // Força Garbage Collector antes da medição (opcional)
-        runtime.gc();
-
-        // Memória inicial
-        long memoriaInicial = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Memória usada no início: " + memoriaInicial / 1024 / 1024 + " MB");
-
-        int[][] G = grafoGenerator.cycleC5();
-        for (int u = 0; u < k; u++) {
-            G = grafoGenerator.mycielski(G);
-
-            // Medição a cada iteração
-            long memoriaUsada = runtime.totalMemory() - runtime.freeMemory();
-            System.out.println("Iteração " + (u + 1) + " -> Memória usada: " + memoriaUsada / 1024 / 1024 + " MB");
-        }
-
-        grafoGenerator grafo = new grafoGenerator(G);
-        grafo.salvaGrafoArquivo("grafo.txt");
-
-        // Memória final
-        long memoriaFinal = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Memória usada ao final: " + memoriaFinal / 1024 / 1024 + " MB");
-    }
+//    public static void createGrafo(int k) {
+//        Runtime runtime = Runtime.getRuntime();
+//
+//        // Força Garbage Collector antes da medição (opcional)
+//        runtime.gc();
+//
+//        // Memória inicial
+//        long memoriaInicial = runtime.totalMemory() - runtime.freeMemory();
+//        System.out.println("Memória usada no início: " + memoriaInicial / 1024 / 1024 + " MB");
+//
+//        int[][] G = grafoGenerator.cycleC5();
+//        for (int u = 0; u < k; u++) {
+//            G = grafoGenerator.mycielski(G);
+//
+//            // Medição a cada iteração
+//            long memoriaUsada = runtime.totalMemory() - runtime.freeMemory();
+//            System.out.println("Iteração " + (u + 1) + " -> Memória usada: " + memoriaUsada / 1024 / 1024 + " MB");
+//        }
+//
+//        grafoGenerator grafo = new grafoGenerator(G);
+//        grafo.salvaGrafoArquivo("grafo.txt");
+//
+//        // Memória final
+//        long memoriaFinal = runtime.totalMemory() - runtime.freeMemory();
+//        System.out.println("Memória usada ao final: " + memoriaFinal / 1024 / 1024 + " MB");
+//    }
 }
