@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Grafo grafo = new Grafo("grafo.txt");
+        Grafo grafo = new Grafo("grafo.txt", 10);
 
-        grafoGenerator g = grafoGenerator.geraInstancia(
-                100000, 7000, 1, 4000);
-        g.salvaEmArquivo("grafo.txt");
+//        grafoGenerator g = grafoGenerator.geraInstancia(
+//                100, 30, 0.6, 40);
+//        g.salvaEmArquivo("grafo.txt");
 
         System.out.print("Arquivo criado como 'grafo.txt', deseja carregar o grafo na memória?(sim: 1, nao: 2) ");
         int loadGrafo = scanner.nextInt();
@@ -16,7 +16,10 @@ public class Main {
             case 1:
                 try {
                     grafo.lerDeArquivo();
-                    grafo.imprimirGrafo();
+                    grafo.gerarGrausVertices();
+                    grafo.ordenarnumGrausVertices();
+                    grafo.colorirGrafo();
+                    grafo.printCores();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
