@@ -5,9 +5,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Grafo grafo = new Grafo("grafo.txt", 10);
 
-//        grafoGenerator g = grafoGenerator.geraInstancia(
-//                100, 30, 0.6, 40);
-//        g.salvaEmArquivo("grafo.txt");
+//        GrafoGenerator g = new GrafoGenerator(10000);
+//        g.createGrafo(0.7);
+//        g.salvaArquivo("grafo.txt");
 
         System.out.print("Arquivo criado como 'grafo.txt', deseja carregar o grafo na memória?(sim: 1, nao: 2) ");
         int loadGrafo = scanner.nextInt();
