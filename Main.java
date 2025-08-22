@@ -1,31 +1,31 @@
 import java.io.IOException;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Grafo grafo = new Grafo("grafo.txt", 10);
+    public static void main(String[] args) throws IOException {
+//        Scanner scanner = new Scanner(System.in);
+//        Grafo grafo = new Grafo("grafo.txt", 500000);
 
-//        GrafoGenerator g = new GrafoGenerator(10000);
-//        g.createGrafo(0.7);
-//        g.salvaArquivo("grafo.txt");
+        GrafoGenerator g = new GrafoGenerator(1000);
+        g.criarGrafo("grafo.txt");
 
         System.out.print("Arquivo criado como 'grafo.txt', deseja carregar o grafo na memória?(sim: 1, nao: 2) ");
-        int loadGrafo = scanner.nextInt();
+//        int loadGrafo = scanner.nextInt();
+//
+//        switch (loadGrafo) {
+//            case 1:
+//                try {
+//                    grafo.lerDeArquivo();
+//                    grafo.gerarGrausVertices();
+//                    grafo.ordenarnumGrausVertices();
+//                    grafo.colorirGrafo();
+//                    grafo.printCores();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
+//        }
+//    }
 
-        switch (loadGrafo) {
-            case 1:
-                try {
-                    grafo.lerDeArquivo();
-                    grafo.gerarGrausVertices();
-                    grafo.ordenarnumGrausVertices();
-                    grafo.colorirGrafo();
-                    grafo.printCores();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-        }
-    }
 
 //    public static void createGrafo(int k) {
 //        Runtime runtime = Runtime.getRuntime();
@@ -53,4 +53,5 @@ public class Main {
 //        long memoriaFinal = runtime.totalMemory() - runtime.freeMemory();
 //        System.out.println("Memória usada ao final: " + memoriaFinal / 1024 / 1024 + " MB");
 //    }
+    }
 }
