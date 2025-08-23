@@ -62,7 +62,6 @@ public class Grafo {
     }
     public void colorirGrafo() {
         int v = this.numGrauVertices.get(this.numGrauVertices.size() - 1)[0];
-        System.out.println(v);
         this.listaCor[v] = 1;
 //        int[] coresUsadas = new int[this.numVertices];
 //        for (int i = 0; i < this.numVertices; i++) {
@@ -96,6 +95,8 @@ public class Grafo {
                 coresVizinhos[coresVizinhos.length - 1 - j] = temp;
             }
 
+            Collections.reverse(listVizinho);
+
             for (int j = 0; j < listVizinho.size(); j++) {
                 if (listaCor[listVizinho.get(j)] == -1) continue;
                 boolean usacCor = false;
@@ -120,8 +121,27 @@ public class Grafo {
         }
     }
     public void printCores() {
+        System.out.println("Imprimindo Cores:\n");
         for (int j : this.listaCor) {
             System.out.println(j);
         }
+    }
+    public boolean verificaColoracao() {
+        for (Integer u : grafo.keySet()) {
+            int corDeU = listaCor[u];
+
+            List<Integer> vizinhos = grafo.get(u);
+            if (vizinhos == null) continue;
+
+            for (Integer v : vizinhos) {
+                int corDeV = listaCor[v];
+
+                if (corDeU == corDeV) {
+                    System.out.println("VIOLAÇÃO: Vértice " + u + " e vizinho " + v + " ambos têm a cor " + corDeU);
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
