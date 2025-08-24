@@ -13,14 +13,14 @@ public class GrafoGenerator {
         this.random = new Random();
     }
 
-    public void criarGrafo(String arquivo) throws IOException {
+    public void criarGrafo(String arquivo, double densidade) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo))) {
             for (int i = 0; i < numVertices; i++) {
                 for (int j = i + 1; j < numVertices; j++) {
-                    writer.write(i + " " + j);
-                    writer.newLine();
-                    writer.write(j + " " + i);
-                    writer.newLine();
+                    if (random.nextDouble() < densidade){
+                        writer.write(i + " " + j);
+                        writer.newLine();
+                    }
                 }
             }
         }
